@@ -18,20 +18,18 @@ export class WorldScene extends Phaser.Scene {
     this.graphics = this.add.graphics();
   }
 
-  create() {}
-
-  update() {
-    if (!this.graphics) return;
+  create() {
     this.drawChunk(new Vector2D(0, 0));
     this.drawChunk(new Vector2D(1, 0));
     this.drawChunk(new Vector2D(1, 1));
     this.drawChunk(new Vector2D(2, 2));
   }
 
+  update() {}
+
   private drawChunk(position: Vector2D) {
     this.chunksManager.spawnChunk(position, (chunk) => {
       if (!this.graphics) return;
-      console.time('draw');
       for (let x = 0; x < this.chunkSize; x += this.cellSize) {
         for (let y = 0; y < this.chunkSize; y += this.cellSize) {
           this.graphics.fillStyle(getPointColor(chunk.points[x][y]), 1);
@@ -42,7 +40,6 @@ export class WorldScene extends Phaser.Scene {
           );
         }
       }
-      console.timeEnd('draw');
     });
   }
 }
