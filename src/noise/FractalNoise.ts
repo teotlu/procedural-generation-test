@@ -1,6 +1,7 @@
 import SimplexNoise from 'simplex-noise';
+import { IValueGenerator } from '../typings';
 
-export type FractalNoise2DConfig = {
+export type FractalNoiseConfig = {
   minValue?: number;
   maxValue?: number;
   amplitude?: number;
@@ -10,7 +11,7 @@ export type FractalNoise2DConfig = {
   percistence?: number;
 };
 
-export class FractalNoise2D {
+export class FractalNoise implements IValueGenerator {
   private config = {
     minValue: 0,
     maxValue: 100,
@@ -18,18 +19,16 @@ export class FractalNoise2D {
     frequency: 0.01,
     octaves: 3,
     lacunarity: 2,
-    percistence: 0.5
+    percistence: 0.5,
   };
 
-  private seed: string;
   private noise: SimplexNoise;
 
-  constructor(seed: string, config?: FractalNoise2DConfig) {
+  constructor(seed: string, config?: FractalNoiseConfig) {
     this.config = {
       ...this.config,
-      ...config
+      ...config,
     };
-    this.seed = seed;
     this.noise = new SimplexNoise(seed);
   }
 
@@ -41,7 +40,7 @@ export class FractalNoise2D {
       lacunarity,
       percistence,
       minValue,
-      maxValue
+      maxValue,
     } = this.config;
 
     let value = amplitude;

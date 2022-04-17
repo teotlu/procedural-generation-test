@@ -1,10 +1,4 @@
-import { WorldPointType } from './typings';
-
-enum ElevationAreas {
-  CANYON = 'mountain',
-  PLANE = 'plane',
-  MOUNTAIN = 'mountain',
-}
+import { IWorldPoint } from './WorldPoint';
 
 enum Biomes {
   DESERT = 'desert',
@@ -32,7 +26,7 @@ export const biomeColors: Record<Biomes, number> = {
   [Biomes.CANYON]: 0x6d6552,
 };
 
-export function getPointBiome(point: WorldPointType) {
+export function getPointBiome(point: IWorldPoint) {
   if (point.elevation > 90) {
     if (point.temperature < 10) return Biomes.POLAR;
     return Biomes.MOUNTAINS;
@@ -52,6 +46,6 @@ export function getPointBiome(point: WorldPointType) {
   return Biomes.CANYON;
 }
 
-export function getPointColor(point: WorldPointType) {
+export function getPointColor(point: IWorldPoint) {
   return biomeColors[getPointBiome(point)];
 }

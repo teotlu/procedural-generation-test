@@ -13,7 +13,7 @@ class Game {
       type: Phaser.AUTO,
       width: WIDTH,
       height: HEIGHT,
-      scene: [WorldScene]
+      scene: [WorldScene],
     });
   }
 }

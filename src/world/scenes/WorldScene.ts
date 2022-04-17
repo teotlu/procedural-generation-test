@@ -1,8 +1,7 @@
-import SimplexNoise from 'simplex-noise';
 import Phaser from 'phaser';
-import { WorldPointType } from '../typings';
+import { IWorldPoint } from '../WorldPoint';
 import { getPointColor } from '../biomes';
-import { FractalNoise2D } from '../../noise/FractalNoise2D';
+import { FractalNoise } from '../../noise/FractalNoise';
 
 const WIDTH = 500;
 const HEIGHT = 500;
@@ -13,20 +12,20 @@ export class WorldScene extends Phaser.Scene {
   private graphics?: Phaser.GameObjects.Graphics;
   private cellSize = 1;
 
-  private elevationNoise = new FractalNoise2D(`${SEED}_elevation`, {
+  private elevationNoise = new FractalNoise(`${SEED}_elevation`, {
     octaves: 5,
     frequency: 0.01,
   });
-  private temperatureNoise = new FractalNoise2D(`${SEED}_temperature`, {
+  private temperatureNoise = new FractalNoise(`${SEED}_temperature`, {
     octaves: 5,
     frequency: 0.005,
   });
-  private moistureNoise = new FractalNoise2D(`${SEED}_moisture`, {
+  private moistureNoise = new FractalNoise(`${SEED}_moisture`, {
     octaves: 5,
     frequency: 0.005,
   });
 
-  private worldGrid: WorldPointType[][] = [];
+  private worldGrid: IWorldPoint[][] = [];
 
   constructor() {
     super({ key: 'world' });
