@@ -4,14 +4,16 @@ import { Vector2D } from '../../helpers/geometry';
 
 export class WorldChunk {
   public points: IWorldPoint[][] = [];
+  public position: Vector2D;
 
   constructor(
-    private position: Vector2D,
+    position: Vector2D,
     private size: number,
     private elevationGenerator: IValueGenerator,
     private moistureGenerator: IValueGenerator,
     private temperatureGenerator: IValueGenerator,
   ) {
+    this.position = position;
     const shiftX = position.x * this.size;
     const shiftY = position.y * this.size;
     for (let x = 0; x < this.size; x++) {

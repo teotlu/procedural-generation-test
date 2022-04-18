@@ -3,7 +3,7 @@ import { Vector2D } from '../../helpers/geometry';
 import { WorldChunk } from './WorldChunk';
 
 export class WorldChunksManager {
-  private spawnedChunks: WeakMap<Vector2D, WorldChunk> = new WeakMap();
+  public spawnedChunks: Record<string, WorldChunk> = {};
 
   private elevationNoise = new FractalNoise(`${this.seed}_elevation`, {
     octaves: 5,
@@ -22,10 +22,7 @@ export class WorldChunksManager {
 
   constructor(private seed: string, private chunkSize: number) {}
 
-  public spawnChunk(
-    position: Vector2D,
-    onSpawnChunk?: (chunk: WorldChunk) => void,
-  ) {
+  public spawnChunk(position: Vector2D): WorldChunk {
     const chunk = new WorldChunk(
       position,
       this.chunkSize,
@@ -33,7 +30,11 @@ export class WorldChunksManager {
       this.moistureNoise,
       this.temperatureNoise,
     );
-    this.spawnedChunks.set(position, chunk);
-    onSpawnChunk?.(chunk);
+    this.spawnedChunks[position.hash] = chunk;
+    return chunk;
+  }
+
+  public removeChunk(position: Vector2D) {
+    delete this.spawnedChunks[position.hash];
   }
 }
