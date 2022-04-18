@@ -1,5 +1,5 @@
 import SimplexNoise from 'simplex-noise';
-import { IValueGenerator } from '../typings';
+import { IValueGenerator } from './typings';
 
 export type FractalNoiseConfig = {
   minValue?: number;

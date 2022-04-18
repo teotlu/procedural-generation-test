@@ -1,5 +1,5 @@
-import { FractalNoise } from '../../noise/FractalNoise';
-import { Vector2D } from '../../typings';
+import { FractalNoise } from '../../generators/FractalNoise';
+import { Vector2D } from '../../helpers/geometry';
 import { WorldChunk } from './WorldChunk';
 
 export class WorldChunksManager {

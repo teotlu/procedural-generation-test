@@ -1,5 +1,6 @@
-import { IValueGenerator, Vector2D } from '../../typings';
+import { IValueGenerator } from '../../generators/typings';
 import { IWorldPoint } from '../WorldPoint';
+import { Vector2D } from '../../helpers/geometry';
 
 export class WorldChunk {
   public points: IWorldPoint[][] = [];

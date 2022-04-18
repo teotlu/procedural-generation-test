@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { Vector2D } from '../../typings';
+import { Vector2D } from '../../helpers/geometry';
 import { getPointColor } from '../biomes';
 import { WorldChunksManager } from '../chunks/WorldChunksManager';
 
